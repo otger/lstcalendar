@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css" media="print"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
+
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    <title>LST1 Trip Calendar</title>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img src="pics/cta_logo_white.png" width="100%" border="0">
+        </div>
+
+        <ul class="list-unstyled components">
+            <img src="webcams/current1/150.jpg" width="90%" border="0" hspace="5%">
+            <li>
+                <a href="./index.html">Home</a>
+            </li>
+            <li>
+                <a href="./site.html">Site</a>
+            </li>
+            <li>
+                <a href="./safety.html">Safety</a>
+            </li>
+            <li>
+                <a href="./weather.html">Weather</a>
+            </li>
+            <li>
+                <a href="./webcams.html">Webcams</a>
+            </li>
+            <li>
+                <a href="./collaboration.html">Collaboration</a>
+            </li>
+            <li>
+                <a href="./documents.html">Documents</a>
+            </li>
+            <li class="active">
+                <a href="./travel.html">Travel Calendar</a>
+            </li>
+            <li>
+                <a href="./wiki/">Wiki</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <div id='calendar'></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" style="background: #486ca5; color: white">
+                    LST
+                </div>
+                <div class="col-sm" style="background: #a54285; color: white">
+                    Magic
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script>
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev, next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay'
+        },
+        navLinks: true, // can click day/week names to navigate views
+        editable: true,
+//       eventLimit: true, // allow "more" link when too many events
+        eventSources: [
+            // your event source
+            {
+                url: './lst1_events.json', // use the `url` property
+                color: '#486ca5',    // an option!
+                textColor: 'white'  // an option!
+            },
+            {
+                url: './magic_events.json', // use the `url` property
+                color: '#a54285',    // an option!
+                textColor: 'white'  // an option!
+            }
+
+            // any other sources...
+
+        ]
+
+    });
+</script>
+
+</body>
+</html>
