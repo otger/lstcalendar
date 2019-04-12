@@ -8,23 +8,15 @@ import pytz
 
 
 class LST1Fields:
-    Shift = 0
-    Name = 1
-    Institute = 2
-    Country = 3
-    Description = 4
-    StartDate = 5
-    EndDate = 6
-    Mobile = 7
-    Email = 8
+    Name = 0
+    StartDate = 1
+    EndDate = 2
 
 
 class MagicFields:
-    Shift = 0
-    Name = 1
-    Description = 2
-    StartDate = 3
-    EndDate = 4
+    Name = 0
+    StartDate = 1
+    EndDate = 2
 
 
 class CalendarSpreadsheet(object):
@@ -89,13 +81,15 @@ class CalendarSpreadsheet(object):
 
 if __name__ == "__main__":
 
-    url = 'https://docs.google.com/spreadsheets/d/157nYPNsbaGdcIkyZSrPPQiaWV16dMwAF8Aq6o3fndKA/export?format=csv'
+    # url = 'https://docs.google.com/spreadsheets/d/157nYPNsbaGdcIkyZSrPPQiaWV16dMwAF8Aq6o3fndKA/export?format=csv'
+    url = 'https://docs.google.com/spreadsheets/d/1Ct7Tm3LeG5LCx_rYS6O-uS9QTShK55mdf1_c2JPBZIw/export?format=csv'
     cs = CalendarSpreadsheet(url=url)
     cs.get_csv()
     cs.process_csv()
     cs.generate_json(path='lst1_events.json')
 
-    url = 'https://docs.google.com/spreadsheets/d/1ajnZZJnZsC8P3g0WKddNtptiFuuV9HwnNzG_isKzXfs/export?format=csv'
+    # url = 'https://docs.google.com/spreadsheets/d/1ajnZZJnZsC8P3g0WKddNtptiFuuV9HwnNzG_isKzXfs/export?format=csv'
+    url = 'https://docs.google.com/spreadsheets/d/1kUVgcLO7oXr4p9e-qFOcWTVJ8B3uja3T2wiS92r7Mm8/export?format=csv'
     cs = CalendarSpreadsheet(url=url, fields=MagicFields)
     cs.get_csv()
     cs.process_csv()
