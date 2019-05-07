@@ -49,26 +49,27 @@ class CalendarSpreadsheet(object):
         for line in self.lines[1:-1]:
             start = None
             end = None
-            try:
-                start = datetime.datetime.strptime(line[self.fields.StartDate], "%d/%m/%Y").date()
-                end = datetime.datetime.strptime(line[self.fields.EndDate], "%d/%m/%Y").date()
-            except:
-                print("Error parsing date of line: {}".format(line))
-                tmp = "Failed parsing dates: "
-                tmp += "start: {}".format(line[self.fields.StartDate])
-                tmp += " - "
-                tmp += "end: {}".format(line[self.fields.EndDate])
-                print(tmp)
+            if line[self.fields.Name] and line[self.fields.StartDate] and line[self.fields.EndDate]:
+                try:
+                    start = datetime.datetime.strptime(line[self.fields.StartDate], "%d/%m/%Y").date()
+                    end = datetime.datetime.strptime(line[self.fields.EndDate], "%d/%m/%Y").date()
+                except:
+                    print("Error parsing date of line: {}".format(line))
+                    tmp = "\tFailed parsing dates: "
+                    tmp += "start: {}".format(line[self.fields.StartDate])
+                    tmp += " - "
+                    tmp += "end: {}".format(line[self.fields.EndDate])
+                    print(tmp)
 
-            obj = {'title': line[self.fields.Name]}
+                obj = {'title': line[self.fields.Name]}
 
-            if start is not None:
-                obj['start'] = start.strftime("%Y-%m-%d")
-                if end is not None:
-                    # Full calendar has exclusive end date
-                    end += datetime.timedelta(days=1)
-                    obj['end'] = end.strftime("%Y-%m-%d")
-                events.append(obj)
+                if start is not None:
+                    obj['start'] = start.strftime("%Y-%m-%d")
+                    if end is not None:
+                        # Full calendar has exclusive end date
+                        end += datetime.timedelta(days=1)
+                        obj['end'] = end.strftime("%Y-%m-%d")
+                    events.append(obj)
 
         # now = datetime.datetime.now(tz=pytz.utc)
         # info = {
