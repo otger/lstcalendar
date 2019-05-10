@@ -81,17 +81,25 @@ class CalendarSpreadsheet(object):
 
 
 if __name__ == "__main__":
+    import os
+    import argparse
 
-    # url = 'https://docs.google.com/spreadsheets/d/157nYPNsbaGdcIkyZSrPPQiaWV16dMwAF8Aq6o3fndKA/export?format=csv'
+    parser = argparse.ArgumentParser(description='Update LST1 travel schedule')
+
+    parser.add_argument('-o', dest='output', default='.')
+
+    args = parser.parse_args()
+
+    outpath = os.path.join(args.output, 'lst1_events.json')
     url = 'https://docs.google.com/spreadsheets/d/1Ct7Tm3LeG5LCx_rYS6O-uS9QTShK55mdf1_c2JPBZIw/export?format=csv'
     cs = CalendarSpreadsheet(url=url)
     cs.get_csv()
     cs.process_csv()
-    cs.generate_json(path='lst1_events.json')
+    cs.generate_json(path=outpath)
 
-    # url = 'https://docs.google.com/spreadsheets/d/1ajnZZJnZsC8P3g0WKddNtptiFuuV9HwnNzG_isKzXfs/export?format=csv'
+    outpath = os.path.join(args.output, 'magic_events.json')
     url = 'https://docs.google.com/spreadsheets/d/1kUVgcLO7oXr4p9e-qFOcWTVJ8B3uja3T2wiS92r7Mm8/export?format=csv'
     cs = CalendarSpreadsheet(url=url, fields=MagicFields)
     cs.get_csv()
     cs.process_csv()
-    cs.generate_json(path='magic_events.json')
+    cs.generate_json(path=outpath)
